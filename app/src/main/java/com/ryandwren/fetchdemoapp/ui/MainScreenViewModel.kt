@@ -25,7 +25,7 @@ class MainScreenViewModel @Inject constructor(
                 .onStart { state.isRequestInProgress.value = true }
                 .onCompletion { state.isRequestInProgress.value = false }
                 .collect{
-                    state.hireList.replaceAll { it }
+                    state.hireList.value = it
                 }
         }
     }

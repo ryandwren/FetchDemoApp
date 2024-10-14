@@ -6,5 +6,5 @@ import com.ryandwren.fetchdemoapp.data.HireItem
 class MainScreenState {
     val isRequestInProgress = mutableStateOf(false)
 
-    val hireList = mutableListOf(emptyList<HireItem>())
+    val hireList = mutableStateOf(emptyList<HireItem>())
 }
