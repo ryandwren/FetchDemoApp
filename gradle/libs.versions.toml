@@ -37,6 +37,7 @@ dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", vers
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
+retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
 
 gson = {group = 'com.google.code.gson', name = 'gson', version.ref = "gson"}
 

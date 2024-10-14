@@ -4,7 +4,7 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 
 interface FetchAPI {
-    @GET("/hiring")
+    @GET("/hiring.json")
     @Headers("Content-Type: application/json")
     suspend fun getHiringList():List<HireItem>
 }
