@@ -8,23 +8,34 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.ryandwren.fetchdemoapp.data.HireItem
 import com.ryandwren.fetchdemoapp.ui.theme.FetchDemoAppTheme
 
 @Composable
-fun MainScreen(state: MainScreenState, modifier: Modifier){
-    Box{
-        if (state.hireList.value.isNotEmpty()){
+fun MainScreen(state: MainScreenState, modifier: Modifier) {
+    Box(modifier = modifier) {
+        if (state.hireList.value.isNotEmpty()) {
             LazyColumn {
-                for(hireItem in state.hireList.value){
+                item {
+                    Row(
+                        modifier = Modifier
+                            .padding(horizontal = 24.dp, vertical = 8.dp)
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(text = "List ID")
+                        Text(text = "Name")
+                        Text(text = "Item ID")
+                    }
+                }
+
+                for (hireItem in state.hireList.value) {
                     item {
                         ItemCard(item = hireItem)
                     }
@@ -37,9 +48,9 @@ fun MainScreen(state: MainScreenState, modifier: Modifier){
                         .align(Alignment.Center)
                         .padding(top = 30.dp)
                 ) {
-                    if (state.isRequestInProgress.value){
+                    if (state.isRequestInProgress.value) {
                         CircularProgressIndicator()
-                    } else{
+                    } else {
                         Text(text = "No items found")
                     }
                 }
@@ -49,8 +60,8 @@ fun MainScreen(state: MainScreenState, modifier: Modifier){
 }
 
 @Composable
-fun ItemCard(item: HireItem){
-    Row (
+fun ItemCard(item: HireItem) {
+    Row(
         modifier = Modifier
             .padding(horizontal = 24.dp, vertical = 8.dp)
             .fillMaxWidth(),
@@ -66,6 +77,20 @@ fun ItemCard(item: HireItem){
 @Composable
 fun MainScreenPreview() {
     FetchDemoAppTheme {
-        MainScreen(state = MainScreenState(), modifier = Modifier)
+        MainScreen(
+            state = MainScreenState().apply {
+                hireList.value = listOf(
+                    HireItem(1, 1, "Item 1"),
+                    HireItem(1, 2, "Item 2"),
+                    HireItem(1, 3, "Item 3"),
+                    HireItem(1, 4, "Item 4"),
+                    HireItem(2, 1, "Item 1"),
+                    HireItem(2, 2, "Item 2"),
+                    HireItem(2, 3, "Item 3"),
+                    HireItem(2, 4, "Item 4"),
+                )
+            },
+            modifier = Modifier
+        )
     }
 }
