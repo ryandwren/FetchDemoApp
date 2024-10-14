@@ -11,8 +11,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.ryandwren.fetchdemoapp.ui.MainScreen
+import com.ryandwren.fetchdemoapp.ui.MainScreenViewModel
 import com.ryandwren.fetchdemoapp.ui.theme.FetchDemoAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,28 +25,14 @@ class MainActivity : ComponentActivity() {
         setContent {
             FetchDemoAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    val viewModel = hiltViewModel<MainScreenViewModel>()
+
+                    MainScreen(
+                        state = viewModel.state,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FetchDemoAppTheme {
-        Greeting("Android")
     }
 }
